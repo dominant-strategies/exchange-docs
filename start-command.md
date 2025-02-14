@@ -16,7 +16,7 @@ This document outlines how to run a Quai node and connect it to the transaction 
     --rpc.http true \
     --rpc.http-port 12711 \
     --txpool.sharing-clients ws://34.136.242.207:8200 \
-    --rpc.http-api "eth,quai,txpool"
+    --rpc.http-api "eth,quai,txpool,net"
 ```
 
 ## Flag Descriptions
