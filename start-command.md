@@ -9,9 +9,7 @@ This document outlines how to run a Quai node and connect it to the transaction 
     --node.slices "[0 0]" \
     --node.genesis-nonce 62242624366553750196964614682162313 \
     --node.quai-coinbases 0x0000000000000000000000000000000000000001 \
-    --node.qi-coinbases 0x0080000000000000000000000000000000000000 \
-    --node.miner-preference 0.5 \
-    --node.coinbase-lockup 0 \
+    --node.qi-coinbases 0x0080000000000000000000000000000000000001 \
     --node.environment orchard \
     --global.data-dir <your_dir> \
     --rpc.http-addr 0.0.0.0 \
@@ -28,8 +26,6 @@ This document outlines how to run a Quai node and connect it to the transaction 
 - `--node.genesis-nonce`: Sets the genesis nonce value for block generation
 - `--node.quai-coinbases`: Defines the Quai coinbase address for mining rewards
 - `--node.qi-coinbases`: Specifies the Qi coinbase address for mining rewards
-- `--node.miner-preference`: Sets the mining preference ratio (between 0 and 1)
-- `--node.coinbase-lockup`: Configures the lockup period for coinbase transactions (in blocks)
 - `--node.environment`: Specifies the network environment (e.g., orchard)
 
 ### Global Settings
@@ -38,7 +34,7 @@ This document outlines how to run a Quai node and connect it to the transaction 
 ### RPC Configuration
 - `--rpc.http-addr`: Defines the HTTP RPC binding address
 - `--rpc.http`: Enables HTTP RPC server
-- `--rpc.http-port`: Sets the HTTP RPC server port
+- `--rpc.http-port`: Sets the HTTP RPC server port, 12711 is an example Prime port that would set the Cyprus-1 http port to 12911
 - `--rpc.http-api`: Specifies enabled API modules (comma-separated list)
 
 ### Transaction Pool
