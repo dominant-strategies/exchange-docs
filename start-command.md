@@ -2,7 +2,22 @@
 
 This document outlines how to run a Quai node and connect it to the transaction relay network.
 
-## Example Command
+## Example Command for Main (Mainnet)
+
+```bash
+./build/bin/go-quai start \
+    --node.slices "[0 0]" \
+    --node.quai-coinbases 0x0000000000000000000000000000000000000001 \
+    --node.qi-coinbases 0x0080000000000000000000000000000000000001 \
+    --global.data-dir <your_dir> \
+    --rpc.http-addr 0.0.0.0 \
+    --rpc.http true \
+    --rpc.http-port 12711 \
+    --txpool.sharing-clients ws://34.136.242.207:8200 \
+    --rpc.http-api "eth,quai,txpool,net"
+```
+
+## Example Command for Testnet (Orchard)
 
 ```bash
 ./build/bin/go-quai start \
