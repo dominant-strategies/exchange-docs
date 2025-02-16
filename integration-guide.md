@@ -94,7 +94,7 @@ https://docs.qu.ai/sdk/content/classes/JsonRpcProvider is the section of the doc
 Default SDK provider connection should be done as
 
 ```{js}
-const provider = new quais.JsonRpcProvider(“http://127.0.0.1”,undefined);
+const provider = new quais.JsonRpcProvider(“http://127.0.0.1”,undefined, { usePathing: false });
 ```
 
 If a custom port needs to be used, change the connection to the below snippet and use the external IP of the node if this script is used from outside the machine. 

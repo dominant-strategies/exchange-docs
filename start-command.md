@@ -6,11 +6,13 @@ This document outlines how to run a Quai node and connect it to the transaction 
 
 ```bash
 ./build/bin/go-quai start \
-    --global.data-dir <your_dir> \
     --rpc.http-addr 0.0.0.0 \
-    --rpc.http-port 12711 \
-    --txpool.sharing-clients ws://34.136.242.207:8200 \
-    --rpc.http-api "eth,quai,txpool,net"
+    --node.slices "[0 0]" \
+    --node.genesis-nonce 23621466532946281564673705261963422 \
+    --txpool.sharing-clients http://ip:9200 \
+    --rpc.http-api "eth,quai,txpool,net" \
+    --node.quai-coinbases "0x0000000000000000000000000000000000000001" \
+    --node.qi-coinbases "0x0080000000000000000000000000000000000001"
 ```
 
 ## Example Command for Testnet (Orchard)
@@ -18,12 +20,13 @@ This document outlines how to run a Quai node and connect it to the transaction 
 ```bash
 ./build/bin/go-quai start \
     --node.environment orchard \
+    --node.slices "[0 0]" \
     --node.genesis-nonce 62242624366553750196964614682162313 \
-    --global.data-dir <your_dir> \
     --rpc.http-addr 0.0.0.0 \
-    --rpc.http-port 12711 \
-    --txpool.sharing-clients ws://34.136.242.207:8200 \
-    --rpc.http-api "eth,quai,txpool,net"
+    --txpool.sharing-clients http://34.136.242.207:9200 \
+    --rpc.http-api "eth,quai,txpool,net" \
+    --node.quai-coinbases "0x0000000000000000000000000000000000000001" \
+    --node.qi-coinbases "0x0080000000000000000000000000000000000001"
 ```
 
 ## Flag Descriptions
@@ -48,7 +51,7 @@ This document outlines how to run a Quai node and connect it to the transaction 
 ## Important Notes
 
 1. Replace `<your_dir>` with your preferred data directory path. If you wish to use the default (`~/.local/share/go-quai`) then you can omit this flag.
-2. The transaction relay endpoint (ws://34.136.242.207:8200) connects your node to the network's transaction sharing system
+2. The transaction relay endpoint (http://34.136.242.207:9200) connects your node to the network's transaction sharing system on orchard testnet only, please contact the team for the correct ips for the mainnet
 3. The HTTP RPC configuration allows external connections with the specified APIs enabled
 
 ## Security Considerations
