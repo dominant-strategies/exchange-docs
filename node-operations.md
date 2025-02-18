@@ -1,4 +1,4 @@
-# Node Configuration Guide
+# Node Operations Guide
 
 This document outlines how to run a Quai node and connect it to the transaction relay network.
 
@@ -58,3 +58,78 @@ This document outlines how to run a Quai node and connect it to the transaction 
 
 - Setting `--rpc.http-addr` to 0.0.0.0 allows connections from any IP address
 - Ensure proper firewall rules are in place if exposing RPC endpoints
+
+
+## Check Log Output
+Monitor your node's operation by viewing log files in the `nodelogs` directory. Logs provide essential information about your node's status and performance.
+
+- View global logs (recommended):
+  ```bash
+  tail -f nodelogs/global.log
+  ```
+- View specific chain logs:
+  ```bash
+  tail -f nodelogs/region-0.log
+  # or
+  tail -f nodelogs/zone-0-0.log
+  ```
+
+A correctly started node will show initialization messages, including config loading, node creation, and P2P connection establishment.
+
+## Download and Sync from Snapshot
+For faster setup or node restoration, you can sync from an official snapshot. This is useful for:
+- Reducing initial sync time
+- Setting up a node on new hardware
+- Restoring node data
+
+Note: Syncing from a snapshot requires trusting the snapshot content. For full network verification, sync from genesis.
+
+Download snapshots using:
+```bash
+# For Mainnet
+wget https://storage.googleapis.com/colosseum-db/mainnet-snapshot.tar.zst
+
+# For Orchard Testnet
+wget https://storage.googleapis.com/colosseum-db/orchard-snapshot.tar.zst
+```
+
+Platform-specific restoration commands are provided for both Linux and MacOS systems.
+
+## Check Sync Progress
+Monitor your node's synchronization progress using log commands:
+
+```bash
+# View all appended blocks
+cat nodelogs/location-to-print-here.log | grep Appended
+
+# Watch new blocks in real-time
+tail -f nodelogs/location-to-print-here.log | grep Appended
+
+# Monitor all chains simultaneously
+tail -f nodelogs/* | grep Appended
+```
+
+Compare your node's block height with the current chain height on the Quai node stats page to track sync progress.
+
+## Update Node Software
+Proper update procedure:
+1. Stop all running node processes
+2. Fetch latest updates: `git fetch --all`
+3. Checkout latest release
+4. Rebuild: `make go-quai`
+5. Restart node
+
+## Reset and Clear Node Data
+For troubleshooting or fresh starts, you can reset your node by clearing all synced state:
+
+Linux:
+```bash
+rm -rf nodelogs ~/.local/share/go-quai
+```
+
+MacOS:
+```bash
+rm -rf nodelogs ~/Library/Application\ Support/go-quai
+```
+
+Warning: This is irreversible and will remove all synced blockchain data.
