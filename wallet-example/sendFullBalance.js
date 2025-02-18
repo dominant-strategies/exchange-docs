@@ -70,6 +70,8 @@ async function sendFullBalance() {
     to: RECIPIENT_ADDRESS, // Recipient address
     value: sendableBalance, // Send the sendable balance
     from: from, // Sender address
+    gasLimit: estimatedGas,
+    gasPrice: gasPrice,
   };
 
   // Send the transaction
