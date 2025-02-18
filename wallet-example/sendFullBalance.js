@@ -8,29 +8,20 @@ import * as quais from "quais";
  * we must manually set the gas fields (gasLimit, gasPrice) and use the gas values to determine the
  * amount of Quai to send.
  *
- * The script demonstrates:
- * 1. Creating and connecting a Wallet to a provider
- * 2. Getting the current block and protocol expansion number
- * 3. Getting the next address from the wallet
- * 4. Signing a transaction
- * 5. Sending a transaction
- *
  * Usage:
  * First, set up your .env file with:
  * PRIVATE_KEY="your private key here"
  * RECIPIENT_ADDRESS="recipient address here"
  *
- * Then run:
+ * Run Command:
  * ```
  * node sendFullBalance.js
  * ```
  *
  * The script will output:
- * - The signer address
- * - The recipient address
- * - The amount of Quai sent
- * - The gas parameters used
- * - The transaction hash
+ * - The signer total address balance
+ * - The signer sendable address balance
+ * - Transaction hash
  *
  */
 
