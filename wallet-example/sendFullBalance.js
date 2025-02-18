@@ -49,14 +49,14 @@ async function sendFullBalance() {
   };
 
   // Estimate the gas for the transaction
-  const estimatedGas = await wallet.estimateGas(txForEstimateGas);
+  const gasLimit = await wallet.estimateGas(txForEstimateGas);
 
   // Get gas price for the zone
   const txLocation = quais.getZoneForAddress(from);
   const { gasPrice } = await provider.getFeeData(txLocation);
 
   // Calculate the sendable balance
-  const sendableBalance = balance - estimatedGas * gasPrice;
+  const sendableBalance = balance - gasLimit * gasPrice;
 
   // Check if the sendable balance is more than cost of the transaction
   if (sendableBalance <= 0) {
@@ -70,7 +70,7 @@ async function sendFullBalance() {
     to: RECIPIENT_ADDRESS, // Recipient address
     value: sendableBalance, // Send the sendable balance
     from: from, // Sender address
-    gasLimit: estimatedGas,
+    gasLimit: gasLimit,
     gasPrice: gasPrice,
   };
 
