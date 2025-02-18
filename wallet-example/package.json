@@ -1,5 +1,6 @@
 {
   "dependencies": {
     "quais": "^1.0.0-alpha.39"
-  }
+  },
+  "type": "module"
 }
